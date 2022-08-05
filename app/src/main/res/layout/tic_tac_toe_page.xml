@@ -21,12 +21,14 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="75dp"
         android:layout_marginTop="625dp"
-        android:backgroundTint="#2196F3"
+        android:backgroundTint="@color/black"
         android:text="@string/go_back"
         android:textColor="@color/white"
         android:textSize="16sp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
+        app:strokeColor="@color/white"
+        app:strokeWidth="4dp"
         tools:ignore="TextContrastCheck" />
 
     <Button
@@ -35,12 +37,14 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="625dp"
         android:layout_marginEnd="75dp"
-        android:backgroundTint="@color/purple_200"
+        android:backgroundTint="@color/black"
         android:text="@string/restart"
         android:textColor="@color/white"
         android:textSize="16sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="parent"
+        app:strokeColor="@color/white"
+        app:strokeWidth="4dp"
         tools:ignore="TextContrastCheck" />
 
     <androidx.gridlayout.widget.GridLayout

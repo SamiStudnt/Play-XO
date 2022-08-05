@@ -14,4 +14,11 @@
     <string name="restart">Restart</string>
     <string name="go_back">Go back</string>
     <string name="exit">Exit</string>
+    <string name="select_coin_flip_prediction">Select coin flip prediction</string>
+    <string name="heads">heads</string>
+    <string name="tails">tails</string>
+    <string name="image_for_heads">image for heads</string>
+    <string name="image_for_tails">image for tails</string>
+    <string name="flip_coin">Flip coin</string>
+    <string name="coin_for_coin_flip">coin for coin flip</string>
 </resources>

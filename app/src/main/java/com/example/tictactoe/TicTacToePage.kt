@@ -22,6 +22,12 @@ class TicTacToePage : Fragment() {
 
     private var count: Int = 0
 
+    private var prediction: Boolean = false
+
+    private var userImageId: Int = R.drawable.x
+
+    private var cpuImageId: Int = R.drawable.o
+
     private fun usermove(line: Int, col: Int, imageview: ImageView){
         if (gameStatus != "idle"){
             return
@@ -30,7 +36,7 @@ class TicTacToePage : Fragment() {
         if (grid!![line][col] == 0){
             count += 1
             grid!![line][col] = 1
-            imageview.setImageResource(R.drawable.x)
+            imageview.setImageResource(userImageId)
 
             verifytable()
 
@@ -54,23 +60,23 @@ class TicTacToePage : Fragment() {
         count += 1
         grid!![cpuLine][cpuCol] = 2
         if (cpuLine == 0 && cpuCol == 0){
-            binding.imageView00.setImageResource(R.drawable.o)
+            binding.imageView00.setImageResource(cpuImageId)
         } else if (cpuLine == 0 && cpuCol == 1){
-            binding.imageView01.setImageResource(R.drawable.o)
+            binding.imageView01.setImageResource(cpuImageId)
         } else if (cpuLine == 0 && cpuCol == 2){
-            binding.imageView02.setImageResource(R.drawable.o)
+            binding.imageView02.setImageResource(cpuImageId)
         } else if (cpuLine == 1 && cpuCol == 0){
-            binding.imageView10.setImageResource(R.drawable.o)
+            binding.imageView10.setImageResource(cpuImageId)
         } else if (cpuLine == 1 && cpuCol == 1){
-            binding.imageView11.setImageResource(R.drawable.o)
+            binding.imageView11.setImageResource(cpuImageId)
         } else if (cpuLine == 1 && cpuCol == 2){
-            binding.imageView12.setImageResource(R.drawable.o)
+            binding.imageView12.setImageResource(cpuImageId)
         } else if (cpuLine == 2 && cpuCol == 0){
-            binding.imageView20.setImageResource(R.drawable.o)
+            binding.imageView20.setImageResource(cpuImageId)
         } else if (cpuLine == 2 && cpuCol == 1){
-            binding.imageView21.setImageResource(R.drawable.o)
+            binding.imageView21.setImageResource(cpuImageId)
         } else if (cpuLine == 2 && cpuCol == 2){
-            binding.imageView22.setImageResource(R.drawable.o)
+            binding.imageView22.setImageResource(cpuImageId)
         }
 
         verifytable()
@@ -129,14 +135,16 @@ class TicTacToePage : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
+        prediction = arguments!!.get("prediction") as Boolean
+
         grid = Array(3) {IntArray(3)}
 
         binding.buttonReload.setOnClickListener {
-            this.activity?.recreate()
+            findNavController().navigate(R.id.tic_tac_toe_page_restart)
         }
 
         binding.buttonBack.setOnClickListener {
-            findNavController().navigate(R.id.action_SecondFragment_to_FirstFragment)
+            findNavController().navigate(R.id.tic_tac_toe_page_to_home_page)
         }
 
         binding.imageView00.setOnClickListener {
@@ -173,6 +181,13 @@ class TicTacToePage : Fragment() {
 
         binding.imageView22.setOnClickListener {
             usermove(2, 2, binding.imageView22)
+        }
+
+        if(prediction == false){
+            userImageId = R.drawable.o
+            cpuImageId = R.drawable.x
+
+            cpumove()
         }
     }
 

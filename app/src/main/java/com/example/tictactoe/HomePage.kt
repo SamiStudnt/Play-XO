@@ -29,7 +29,7 @@ class HomePage : Fragment() {
         super.onViewCreated(view, savedInstanceState)
 
         binding.buttonStart.setOnClickListener {
-            findNavController().navigate(R.id.action_FirstFragment_to_SecondFragment)
+            findNavController().navigate(R.id.home_page_to_coin_flip_page)
         }
 
         binding.buttonExit.setOnClickListener {
