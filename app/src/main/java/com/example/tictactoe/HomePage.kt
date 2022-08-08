@@ -7,22 +7,19 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.navigation.fragment.findNavController
 import com.example.tictactoe.databinding.HomePageBinding
+import kotlin.system.exitProcess
 
 
 class HomePage : Fragment() {
-
     private var _binding: HomePageBinding? = null
-
     private val binding get() = _binding!!
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
-
         _binding = HomePageBinding.inflate(inflater, container, false)
         return binding.root
-
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
@@ -33,8 +30,7 @@ class HomePage : Fragment() {
         }
 
         binding.buttonExit.setOnClickListener {
-            System.exit(0)
-            //this.activity?.finishAndRemoveTask()
+            exitProcess(0)
         }
     }
 

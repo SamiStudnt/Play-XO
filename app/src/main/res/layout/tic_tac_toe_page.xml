@@ -71,7 +71,6 @@
             android:layout_height="110dp"
             android:background="@color/black"
             android:clickable="true"
-            android:contextClickable="true"
             app:layout_column="2"
             app:layout_row="2"
             tools:ignore="SpeakableTextPresentCheck" />
@@ -82,7 +81,6 @@
             android:layout_height="110dp"
             android:background="@color/black"
             android:clickable="true"
-            android:contextClickable="true"
             app:layout_column="1"
             app:layout_row="2"
             tools:ignore="SpeakableTextPresentCheck" />
@@ -93,7 +91,6 @@
             android:layout_height="110dp"
             android:background="@color/black"
             android:clickable="true"
-            android:contextClickable="true"
             app:layout_column="0"
             app:layout_row="2"
             tools:ignore="SpeakableTextPresentCheck" />
@@ -104,7 +101,6 @@
             android:layout_height="110dp"
             android:background="@color/black"
             android:clickable="true"
-            android:contextClickable="true"
             app:layout_column="2"
             app:layout_row="1"
             tools:ignore="SpeakableTextPresentCheck" />
@@ -116,7 +112,6 @@
             android:layout_marginBottom="10dp"
             android:background="@color/black"
             android:clickable="true"
-            android:contextClickable="true"
             app:layout_column="1"
             app:layout_row="1"
             tools:ignore="SpeakableTextPresentCheck" />
@@ -128,7 +123,6 @@
             android:layout_marginBottom="10dp"
             android:background="@color/black"
             android:clickable="true"
-            android:contextClickable="true"
             app:layout_column="0"
             app:layout_row="1"
             tools:ignore="SpeakableTextPresentCheck" />
@@ -140,7 +134,6 @@
             android:layout_marginBottom="10dp"
             android:background="@color/black"
             android:clickable="true"
-            android:contextClickable="true"
             app:layout_column="2"
             app:layout_row="0"
             tools:ignore="SpeakableTextPresentCheck" />
@@ -152,7 +145,6 @@
             android:layout_marginEnd="10dp"
             android:background="@color/black"
             android:clickable="true"
-            android:contextClickable="true"
             app:layout_column="1"
             app:layout_row="0"
             tools:ignore="SpeakableTextPresentCheck" />
@@ -164,7 +156,6 @@
             android:layout_marginEnd="10dp"
             android:background="@color/black"
             android:clickable="true"
-            android:contextClickable="true"
             app:layout_column="0"
             app:layout_row="0"
             tools:ignore="SpeakableTextPresentCheck" />
@@ -175,7 +166,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="75dp"
-        android:text="Your turn"
+        android:text="@string/your_turn"
         android:textColor="@color/white"
         android:textSize="20sp"
         android:visibility="visible"
