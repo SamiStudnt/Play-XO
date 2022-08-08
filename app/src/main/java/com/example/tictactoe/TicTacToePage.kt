@@ -11,21 +11,13 @@ import com.example.tictactoe.databinding.TicTacToePageBinding
 
 
 class TicTacToePage : Fragment() {
-
     private var _binding: TicTacToePageBinding? = null
-
     private val binding get() = _binding!!
-
     private var grid: Array<IntArray>? = null
-
     private var gameStatus: String = "idle"
-
     private var count: Int = 0
-
     private var prediction: Boolean = false
-
     private var userImageId: Int = R.drawable.x
-
     private var cpuImageId: Int = R.drawable.o
 
     private fun usermove(line: Int, col: Int, imageview: ImageView){
@@ -48,14 +40,170 @@ class TicTacToePage : Fragment() {
         }
     }
 
-    private fun cpumove(){
-        var cpuLine: Int = (0..2).random()
-        var cpuCol: Int = (0..2).random()
+    private fun calculatebestmoves(): List<Pair<Int, Int>>{
+        var moves: MutableList<Pair<Int, Int>> = mutableListOf()
 
-        while(grid!![cpuLine][cpuCol] != 0){
-            cpuLine = (0..2).random()
-            cpuCol = (0..2).random()
+        //check if the cpu can win after its turn
+        for(i in 0..2) {
+            for (j in 0..2) {
+                if (grid!![i][j] == 0){
+                    grid!![i][j] = 2
+                    verifytable()
+                    if(gameStatus == "L"){
+                        moves.add(Pair(i, j))
+                        gameStatus = "idle"
+                        binding.gameStatus.setText("")
+                    }
+                    grid!![i][j] = 0
+                }
+            }
         }
+
+        if(moves.size > 0)
+            return moves
+
+        //check if the user can win on the next move, and try to stop him from winning
+        for(i in 0..2) {
+            for (j in 0..2) {
+                if (grid!![i][j] == 0){
+                    grid!![i][j] = 1
+                    verifytable()
+                    if(gameStatus == "W"){
+                        moves.add(Pair(i, j))
+                        gameStatus = "idle"
+                        binding.gameStatus.setText("")
+                    }
+                    grid!![i][j] = 0
+                }
+            }
+        }
+
+        if(moves.size > 0)
+            return moves
+
+        var maxNo = 1
+
+        //get best possible moves for the cpu
+        for(i in 0..2) {
+            for(j in 0..2) {
+                if (grid!![i][j] == 0){
+                    var noElem = 1
+                    if (i==0){
+                        if(grid!![i+1][j] == 2){
+                            noElem += 1
+                        }
+                        if(grid!![i+2][j] == 2){
+                            noElem += 1
+                        }
+                    }
+                    else if (i==1){
+                        if(grid!![i-1][j] == 2){
+                            noElem += 1
+                        }
+                        if(grid!![i+1][j] == 2){
+                            noElem += 1
+                        }
+                    }
+                    else if (i==2){
+                        if(grid!![i-2][j] == 2){
+                            noElem += 1
+                        }
+                        if(grid!![i-1][j] == 2){
+                            noElem += 1
+                        }
+                    }
+                    if(noElem > maxNo){
+                        maxNo = noElem
+                        moves = mutableListOf()
+                        moves.add(Pair(i,j))
+                    }
+                    else if (noElem == maxNo){
+                        moves.add(Pair(i,j))
+                    }
+
+                    noElem = 1
+                    if (j==0){
+                        if(grid!![i][j+1] == 2){
+                            noElem += 1
+                        }
+                        if(grid!![i][j+2] == 2){
+                            noElem += 1
+                        }
+                    }
+                    else if (j==1){
+                        if(grid!![i][j-1] == 2){
+                            noElem += 1
+                        }
+                        if(grid!![i][j+1] == 2){
+                            noElem += 1
+                        }
+                    }
+                    else if (j==2){
+                        if(grid!![i][j-2] == 2){
+                            noElem += 1
+                        }
+                        if(grid!![i][j-1] == 2){
+                            noElem += 1
+                        }
+                    }
+                    if(!moves.contains(Pair(i,j))){
+                        if(noElem > maxNo){
+                            maxNo = noElem
+                            moves = mutableListOf()
+                            moves.add(Pair(i,j))
+                        }
+                        else if (noElem == maxNo){
+                            moves.add(Pair(i,j))
+                        }
+                    }
+
+                    if(i==j){
+                        if(i==0){
+                            if(grid!![i+1][j+1] == 2){
+                                noElem += 1
+                            }
+                            if(grid!![i+2][j+2] == 2){
+                                noElem += 1
+                            }
+                        }
+                        else if(i==1){
+                            if(grid!![i-1][j-1] == 2){
+                                noElem += 1
+                            }
+                            if(grid!![i+1][j+1] == 2){
+                                noElem += 1
+                            }
+                        }
+                        else if(i==2){
+                            if(grid!![i-2][j-2] == 2){
+                                noElem += 1
+                            }
+                            if(grid!![i-1][j-1] == 2){
+                                noElem += 1
+                            }
+                        }
+                        if(!moves.contains(Pair(i,j))){
+                            if(noElem > maxNo){
+                                maxNo = noElem
+                                moves = mutableListOf()
+                                moves.add(Pair(i,j))
+                            }
+                            else if (noElem == maxNo){
+                                moves.add(Pair(i,j))
+                            }
+                        }
+                    }
+                }
+            }
+        }
+        return moves
+    }
+
+    private fun cpumove(){
+        val moves: List<Pair<Int, Int>> = calculatebestmoves()
+        val ranNo: Int = (moves.indices).random()
+        val cpuLine: Int = moves[ranNo].first
+        val cpuCol: Int = moves[ranNo].second
 
         count += 1
         grid!![cpuLine][cpuCol] = 2
@@ -95,7 +243,7 @@ class TicTacToePage : Fragment() {
             (grid!![0][2] == 1 && grid!![1][1] == 1 && grid!![2][0] == 1) ||
             (grid!![1][0] == 1 && grid!![1][1] == 1 && grid!![1][2] == 1) ||
             (grid!![2][0] == 1 && grid!![2][1] == 1 && grid!![2][2] == 1) ){
-                gameStatus = "X"
+                gameStatus = "W"
         } else if (
             (grid!![0][0] == 2 && grid!![0][1] == 2 && grid!![0][2] == 2) ||
             (grid!![0][0] == 2 && grid!![1][0] == 2 && grid!![2][0] == 2) ||
@@ -105,16 +253,16 @@ class TicTacToePage : Fragment() {
             (grid!![0][2] == 2 && grid!![1][1] == 2 && grid!![2][0] == 2) ||
             (grid!![1][0] == 2 && grid!![1][1] == 2 && grid!![1][2] == 2) ||
             (grid!![2][0] == 2 && grid!![2][1] == 2 && grid!![2][2] == 2) ){
-                gameStatus = "O"
+                gameStatus = "L"
         } else if (count == 9){
             gameStatus = "D"
         }
 
         when (gameStatus) {
-            "X" -> {
+            "W" -> {
                 binding.gameStatus.setText("You won")
             }
-            "O" -> {
+            "L" -> {
                 binding.gameStatus.setText("You lost")
             }
             "D" -> {
