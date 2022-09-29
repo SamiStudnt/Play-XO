@@ -17,6 +17,9 @@ class CoinFlipPage : Fragment() {
     private val binding get() = _binding!!
     private var prediction: String? = null
 
+    @Override
+    override fun onSaveInstanceState(outState: Bundle) {}
+
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,

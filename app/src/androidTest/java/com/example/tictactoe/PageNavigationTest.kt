@@ -45,7 +45,7 @@ class PageNavigationTests{
 
         Handler(Looper.getMainLooper()).postDelayed({
             assertEquals(navController.currentDestination?.id, R.id.TicTacToePage)
-        }, 1000)
+        }, 10000)
     }
 
     @Test

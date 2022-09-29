@@ -21,6 +21,9 @@ class TicTacToePage : Fragment() {
     private var userImageId: Int = R.drawable.x
     private var cpuImageId: Int = R.drawable.o
 
+    @Override
+    override fun onSaveInstanceState(outState: Bundle) {}
+
     private fun usermove(line: Int, col: Int, imageview: ImageView){
         if (grid[line][col] == 0){  //check if grid spot is empty
             count += 1
@@ -30,7 +33,7 @@ class TicTacToePage : Fragment() {
             verifytable()   //check if the game is over or not
 
             if(gameStatus == "idle"){   //if the game is not over, it's the CPU's turn
-                binding.gameStatus.setText("CPU's turn")
+                binding.gameStatus.text = getString(R.string.game_status_cpu_turn)
                 toggleboard(false)
 
                 Handler(Looper.getMainLooper()).postDelayed({
@@ -54,7 +57,7 @@ class TicTacToePage : Fragment() {
                     if(gameStatus == "L"){
                         moves.add(Pair(i, j))
                         gameStatus = "idle"
-                        binding.gameStatus.setText("CPU's turn")
+                        binding.gameStatus.setText(R.string.game_status_cpu_turn)
                     }
                     grid[i][j] = 0
                 }
@@ -73,7 +76,7 @@ class TicTacToePage : Fragment() {
                     if(gameStatus == "W"){  //if the grid spot is empty, we simulate the user turn and see if the user wins
                         moves.add(Pair(i, j))
                         gameStatus = "idle"
-                        binding.gameStatus.setText("CPU's turn")
+                        binding.gameStatus.setText(R.string.game_status_cpu_turn)
                     }
                     grid[i][j] = 0
                 }
@@ -148,26 +151,26 @@ class TicTacToePage : Fragment() {
 
         //verify current column
         if (i==0){
-            if(grid[i+1][j] == value){
+            if(grid[1][j] == value){
                 noElem += 1
             }
-            if(grid[i+2][j] == value){
+            if(grid[2][j] == value){
                 noElem += 1
             }
         }
         else if (i==1){
-            if(grid[i-1][j] == value){
+            if(grid[0][j] == value){
                 noElem += 1
             }
-            if(grid[i+1][j] == value){
+            if(grid[2][j] == value){
                 noElem += 1
             }
         }
         else if (i==2){
-            if(grid[i-2][j] == value){
+            if(grid[0][j] == value){
                 noElem += 1
             }
-            if(grid[i-1][j] == value){
+            if(grid[1][j] == value){
                 noElem += 1
             }
         }
@@ -180,26 +183,26 @@ class TicTacToePage : Fragment() {
 
         //verify current line
         if (j==0){
-            if(grid[i][j+1] == value){
+            if(grid[i][1] == value){
                 noElem += 1
             }
-            if(grid[i][j+2] == value){
+            if(grid[i][2] == value){
                 noElem += 1
             }
         }
         else if (j==1){
-            if(grid[i][j-1] == value){
+            if(grid[i][0] == value){
                 noElem += 1
             }
-            if(grid[i][j+1] == value){
+            if(grid[i][2] == value){
                 noElem += 1
             }
         }
         else if (j==2){
-            if(grid[i][j-2] == value){
+            if(grid[i][0] == value){
                 noElem += 1
             }
-            if(grid[i][j-1] == value){
+            if(grid[i][1] == value){
                 noElem += 1
             }
         }
@@ -212,26 +215,26 @@ class TicTacToePage : Fragment() {
 
         //verify main diagonal
         if(i==0){
-            if(grid[i+1][j+1] == value){
+            if(grid[1][j+1] == value){
                 noElem += 1
             }
-            if(grid[i+2][j+2] == value){
+            if(grid[2][j+2] == value){
                 noElem += 1
             }
         }
         else if(i==1){
-            if(grid[i-1][j-1] == value){
+            if(grid[0][j-1] == value){
                 noElem += 1
             }
-            if(grid[i+1][j+1] == value){
+            if(grid[2][j+1] == value){
                 noElem += 1
             }
         }
         else if(i==2){
-            if(grid[i-2][j-2] == value){
+            if(grid[0][j-2] == value){
                 noElem += 1
             }
-            if(grid[i-1][j-1] == value){
+            if(grid[1][j-1] == value){
                 noElem += 1
             }
         }
@@ -244,26 +247,26 @@ class TicTacToePage : Fragment() {
 
         //verify secondary diagonal
         if(i==0){
-            if(grid[i+1][j-1] == value){
+            if(grid[1][j-1] == value){
                 noElem += 1
             }
-            if(grid[i+2][j-2] == value){
+            if(grid[2][j-2] == value){
                 noElem += 1
             }
         }
         else if(i==1){
-            if(grid[i-1][j+1] == value){
+            if(grid[0][j+1] == value){
                 noElem += 1
             }
-            if(grid[i+1][j-1] == value){
+            if(grid[2][j-1] == value){
                 noElem += 1
             }
         }
         else if(i==2){
-            if(grid[i-2][j+2] == value){
+            if(grid[0][j+2] == value){
                 noElem += 1
             }
-            if(grid[i-1][j+1] == value){
+            if(grid[1][j+1] == value){
                 noElem += 1
             }
         }
@@ -317,7 +320,7 @@ class TicTacToePage : Fragment() {
         verifytable()   //check if the game is over or not
 
         if(gameStatus == "idle"){
-            binding.gameStatus.setText("Your turn")
+            binding.gameStatus.text = getString(R.string.game_status_user_turn)
             toggleboard(true)
         }
     }
@@ -346,13 +349,13 @@ class TicTacToePage : Fragment() {
 
         when (gameStatus) {
             "W" -> {
-                binding.gameStatus.setText("You won")
+                binding.gameStatus.text = getString(R.string.game_status_W)
             }
             "L" -> {
-                binding.gameStatus.setText("You lost")
+                binding.gameStatus.text = getString(R.string.game_status_L)
             }
             "D" -> {
-                binding.gameStatus.setText("DRAW")
+                binding.gameStatus.text = getString(R.string.game_status_D)
             }
         }
     }
@@ -417,7 +420,7 @@ class TicTacToePage : Fragment() {
         if(!prediction){
             userImageId = R.drawable.o
             cpuImageId = R.drawable.x
-            binding.gameStatus.setText("CPU's turn")
+            binding.gameStatus.text = getString(R.string.game_status_cpu_turn)
             toggleboard(false)
 
             Handler(Looper.getMainLooper()).postDelayed({

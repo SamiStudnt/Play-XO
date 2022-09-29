@@ -1,10 +1,10 @@
 package com.example.tictactoe
 
 import android.os.Bundle
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
 import com.example.tictactoe.databinding.HomePageBinding
 import kotlin.system.exitProcess
@@ -13,6 +13,9 @@ import kotlin.system.exitProcess
 class HomePage : Fragment() {
     private var _binding: HomePageBinding? = null
     private val binding get() = _binding!!
+
+    @Override
+    override fun onSaveInstanceState(outState: Bundle) {}
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,

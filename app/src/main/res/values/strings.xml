@@ -6,7 +6,6 @@
     <string name="second_fragment_label">Second Fragment</string>
     <string name="next">Next</string>
     <string name="previous">Previous</string>
-
     <string name="hello_first_fragment">Hello first fragment</string>
     <string name="hello_second_fragment">Hello second fragment. Arg: %1$s</string>
     <string name="start">Start</string>
@@ -22,4 +21,9 @@
     <string name="flip_coin">Flip coin</string>
     <string name="coin_for_coin_flip">coin for coin flip</string>
     <string name="your_turn">Your turn</string>
+    <string name="game_status_cpu_turn">CPU\'s turn</string>
+    <string name="game_status_user_turn">Your turn</string>
+    <string name="game_status_W">You won</string>
+    <string name="game_status_L">You lost</string>
+    <string name="game_status_D">DRAW</string>
 </resources>
