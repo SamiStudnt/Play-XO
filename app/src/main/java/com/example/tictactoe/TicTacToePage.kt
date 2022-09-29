@@ -368,7 +368,7 @@ class TicTacToePage : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        prediction = arguments!!.get("prediction") as Boolean
+        prediction = requireArguments().getBoolean("prediction")
 
         binding.buttonReload.setOnClickListener {
             findNavController().navigate(R.id.tic_tac_toe_page_restart)
