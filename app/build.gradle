@@ -4,12 +4,12 @@ plugins {
 }
 
 android {
-    namespace "com.example.tictactoe"
+    namespace "com.example.pocketgames"
 
     compileSdk 33
 
     defaultConfig {
-        applicationId "com.example.tictactoe"
+        applicationId "com.example.pocketgames"
         minSdk 30
         targetSdk 33
         versionCode 1

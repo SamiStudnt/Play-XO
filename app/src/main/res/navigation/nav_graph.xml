@@ -7,7 +7,7 @@
 
     <fragment
         android:id="@+id/HomePage"
-        android:name="com.example.tictactoe.HomePage"
+        android:name="com.example.pocketgames.HomePage"
         android:label="homepage"
         tools:layout="@layout/home_page">
 
@@ -17,7 +17,7 @@
     </fragment>
     <fragment
         android:id="@+id/TicTacToePage"
-        android:name="com.example.tictactoe.TicTacToePage"
+        android:name="com.example.pocketgames.TicTacToePage"
         android:label="tictactoepage"
         tools:layout="@layout/tic_tac_toe_page">
 
@@ -30,7 +30,7 @@
     </fragment>
     <fragment
         android:id="@+id/CoinFlipPage"
-        android:name="com.example.tictactoe.CoinFlipPage"
+        android:name="com.example.pocketgames.CoinFlipPage"
         android:label="coinflippage"
         tools:layout="@layout/coin_flip_page">
 

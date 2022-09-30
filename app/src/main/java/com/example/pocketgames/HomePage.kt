@@ -1,4 +1,4 @@
-package com.example.tictactoe
+package com.example.pocketgames
 
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -6,7 +6,7 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
-import com.example.tictactoe.databinding.HomePageBinding
+import com.example.pocketgames.databinding.HomePageBinding
 import kotlin.system.exitProcess
 
 

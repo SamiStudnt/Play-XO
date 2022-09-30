@@ -1,4 +1,4 @@
-package com.example.tictactoe
+package com.example.pocketgames
 
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
@@ -8,7 +8,7 @@ import androidx.navigation.ui.navigateUp
 import androidx.navigation.ui.setupActionBarWithNavController
 import android.view.Menu
 import android.view.MenuItem
-import com.example.tictactoe.databinding.ActivityMainBinding
+import com.example.pocketgames.databinding.ActivityMainBinding
 
 
 class MainActivity : AppCompatActivity() {

@@ -1,4 +1,4 @@
-package com.example.tictactoe
+package com.example.pocketgames
 
 import android.os.Bundle
 import android.os.Handler

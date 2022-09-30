@@ -1,4 +1,4 @@
-package com.example.tictactoe
+package com.example.pocketgames
 
 import android.os.Bundle
 import android.os.Handler
@@ -9,7 +9,7 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
 import androidx.navigation.fragment.findNavController
-import com.example.tictactoe.databinding.TicTacToePageBinding
+import com.example.pocketgames.databinding.TicTacToePageBinding
 
 class TicTacToePage : Fragment() {
     private var _binding: TicTacToePageBinding? = null
