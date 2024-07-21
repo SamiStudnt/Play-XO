@@ -27,7 +27,7 @@
         android:layout_marginStart="75dp"
         android:layout_marginTop="350dp"
         android:backgroundTint="@color/black"
-        android:text="@string/heads"
+        android:text="heads"
         android:textColor="@color/white"
         android:textSize="16sp"
         app:layout_constraintStart_toStartOf="parent"
